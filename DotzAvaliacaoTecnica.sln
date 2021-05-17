@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - UI", "01 - UI", "{6E85195F-94E9-4576-9655-778006D7EDE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - FrameWork", "02 - FrameWork", "{84C27967-1E71-4BA9-A139-18BB7C153591}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Services", "03 - Services", "{A90AC676-32BC-44E1-9F13-BC590D23C826}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Test", "04 - Test", "{961866EF-2F4A-4D6D-A07E-F94EB7E88B51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotzAvaliacaoTecnica.Domain", "DotzAvaliacaoTecnica.Domain\DotzAvaliacaoTecnica.Domain.csproj", "{DDACE1DD-2FB1-4918-AB1A-C4CD13800450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotzAvaliacaoTecnica.DomainCore", "DotzAvaliacaoTecnica.DomainCore\DotzAvaliacaoTecnica.DomainCore.csproj", "{59D64886-53B2-4793-8F1E-E2DF5F444E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotzAvaliacaoTecnica.Infra.Ioc", "DotzAvaliacaoTecnica.Infra.Ioc\DotzAvaliacaoTecnica.Infra.Ioc.csproj", "{069BCFF3-8179-4F88-BE72-0ABD971BB49F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotzAvaliacaoTecnica.Infra.Repository", "DotzAvaliacaoTecnica.Infra.Repository\DotzAvaliacaoTecnica.Infra.Repository.csproj", "{7908447B-5703-4C87-B460-CF024134D933}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotzAvaliacaoTecnica.Application", "DotzAvaliacaoTecnica.Application\DotzAvaliacaoTecnica.Application.csproj", "{E30F6243-7E07-4342-BF05-60991F5A9D6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotzAvaliacaoTecnica.API", "DotzAvaliacaoTecnica.API\DotzAvaliacaoTecnica.API.csproj", "{33264836-7F53-4B27-B193-059D7101230E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotzAvaliacaoTecnica.Testes", "DotzAvaliacaoTecnica.Testes\DotzAvaliacaoTecnica.Testes.csproj", "{741B9908-6259-4208-A40A-EB9A69C78BCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDACE1DD-2FB1-4918-AB1A-C4CD13800450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDACE1DD-2FB1-4918-AB1A-C4CD13800450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDACE1DD-2FB1-4918-AB1A-C4CD13800450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDACE1DD-2FB1-4918-AB1A-C4CD13800450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59D64886-53B2-4793-8F1E-E2DF5F444E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D64886-53B2-4793-8F1E-E2DF5F444E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D64886-53B2-4793-8F1E-E2DF5F444E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D64886-53B2-4793-8F1E-E2DF5F444E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{069BCFF3-8179-4F88-BE72-0ABD971BB49F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{069BCFF3-8179-4F88-BE72-0ABD971BB49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{069BCFF3-8179-4F88-BE72-0ABD971BB49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069BCFF3-8179-4F88-BE72-0ABD971BB49F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7908447B-5703-4C87-B460-CF024134D933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7908447B-5703-4C87-B460-CF024134D933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7908447B-5703-4C87-B460-CF024134D933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7908447B-5703-4C87-B460-CF024134D933}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30F6243-7E07-4342-BF05-60991F5A9D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30F6243-7E07-4342-BF05-60991F5A9D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30F6243-7E07-4342-BF05-60991F5A9D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30F6243-7E07-4342-BF05-60991F5A9D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33264836-7F53-4B27-B193-059D7101230E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33264836-7F53-4B27-B193-059D7101230E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33264836-7F53-4B27-B193-059D7101230E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33264836-7F53-4B27-B193-059D7101230E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{741B9908-6259-4208-A40A-EB9A69C78BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{741B9908-6259-4208-A40A-EB9A69C78BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{741B9908-6259-4208-A40A-EB9A69C78BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{741B9908-6259-4208-A40A-EB9A69C78BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DDACE1DD-2FB1-4918-AB1A-C4CD13800450} = {84C27967-1E71-4BA9-A139-18BB7C153591}
+		{59D64886-53B2-4793-8F1E-E2DF5F444E54} = {84C27967-1E71-4BA9-A139-18BB7C153591}
+		{069BCFF3-8179-4F88-BE72-0ABD971BB49F} = {84C27967-1E71-4BA9-A139-18BB7C153591}
+		{7908447B-5703-4C87-B460-CF024134D933} = {84C27967-1E71-4BA9-A139-18BB7C153591}
+		{E30F6243-7E07-4342-BF05-60991F5A9D6E} = {84C27967-1E71-4BA9-A139-18BB7C153591}
+		{33264836-7F53-4B27-B193-059D7101230E} = {6E85195F-94E9-4576-9655-778006D7EDE7}
+		{741B9908-6259-4208-A40A-EB9A69C78BCD} = {961866EF-2F4A-4D6D-A07E-F94EB7E88B51}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA9D1757-4544-4F84-8803-6EB29A3F7812}
+	EndGlobalSection
+EndGlobal
