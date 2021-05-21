@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace DotzAvaliacaoTecnica.API.Controllers
 {
-    [AllowAnonymous]
+    
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -34,7 +34,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             _userExtractService = userExtractService;
         }
 
-        
+        [AllowAnonymous]
         [HttpPost]
         [Route("Authenticate")]
         public IActionResult Authenticate([FromBody] UserViewModel userViewModel)
@@ -53,7 +53,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(new {user.Name,token });
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [Route("")]
         public IActionResult CreateUser([FromBody] UserDTO userDTO)
@@ -62,7 +62,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(user);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPut]
         [Route("")]
         public IActionResult UpdateUser([FromBody] UserDTO userDTO)
@@ -71,7 +71,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(user);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete]
         [Route("")]
         public IActionResult DeleteUser([FromBody] UserDTO userDTO)
@@ -80,7 +80,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return NoContent();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("")]
         public IActionResult GetAllUsers()
@@ -90,7 +90,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(users);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("{id}:int")]
         public IActionResult GetById(int id)
@@ -103,7 +103,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(user);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [Route("AddUserPoints")]
         public IActionResult AddUserPoints([FromBody] Points points)
@@ -149,7 +149,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("GetUserPointsByUserId/{id}:int")]
         public IActionResult GetUserPointsByUserId(int id)
@@ -162,7 +162,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(UserPoints);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("GetUserExtractByUserId/{id}:int")]
         public IActionResult GetUserExtractByUserId(int id)

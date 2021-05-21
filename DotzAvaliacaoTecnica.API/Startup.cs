@@ -52,8 +52,8 @@ namespace DotzAvaliacaoTecnica.API
 
             var connectionString = Configuration.GetConnectionString("DotzConnection");
 
-            //services.AddDbContext<DotzContext>(opt => opt.UseInMemoryDatabase("DotzConnection"));
-            services.AddDbContext<DotzContext>(opt => opt.UseMySql(connectionString, MySqlServerVersion.AutoDetect(connectionString));
+            services.AddDbContext<DotzContext>(opt => opt.UseInMemoryDatabase("DotzConnection"));
+            //services.AddDbContext<DotzContext>(opt => opt.UseMySql(connectionString, MySqlServerVersion.AutoDetect(connectionString));
 
 
             services.AddSwaggerGen(c =>

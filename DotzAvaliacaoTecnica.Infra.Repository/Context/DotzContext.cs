@@ -30,12 +30,12 @@ namespace DotzAvaliacaoTecnica.Infra.Repository.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Define the database to use
-            var conncetion = _config.GetConnectionString("DotzConnection");
-            optionsBuilder.UseMySql(conncetion, MySqlServerVersion.AutoDetect(conncetion));
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    // Define the database to use
+        //    var conncetion = _config.GetConnectionString("DotzConnection");
+        //    optionsBuilder.UseMySql(conncetion, MySqlServerVersion.AutoDetect(conncetion));
 
-        }
+        //}
     }
 }
