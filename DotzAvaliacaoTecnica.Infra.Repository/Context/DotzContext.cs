@@ -8,6 +8,10 @@ namespace DotzAvaliacaoTecnica.Infra.Repository.Context
 {
     public class DotzContext : DbContext
     {
+        public DotzContext()
+        {
+
+        }
         private readonly IConfiguration _config;
         public DotzContext(DbContextOptions<DotzContext> options, IConfiguration configuration) : base(options)
         {
@@ -18,17 +22,20 @@ namespace DotzAvaliacaoTecnica.Infra.Repository.Context
         public DbSet<Points> Points { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<UserExtract> UserExtracts { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Orders> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    // Define the database to use
-        //    optionsBuilder.UseMySQL(_config.GetConnectionString("DotzConnection"));
-            
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // Define the database to use
+            var conncetion = _config.GetConnectionString("DotzConnection");
+            optionsBuilder.UseMySql(conncetion, MySqlServerVersion.AutoDetect(conncetion));
+
+        }
     }
 }

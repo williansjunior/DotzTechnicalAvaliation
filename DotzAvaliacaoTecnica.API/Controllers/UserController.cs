@@ -1,6 +1,10 @@
-﻿using DotzAvaliacaoTecnica.API.ViewModel;
+﻿using AutoMapper;
+using DotzAvaliacaoTecnica.API.ViewModel;
 using DotzAvaliacaoTecnica.Application.Interfaces;
 using DotzAvaliacaoTecnica.Domain.DTO;
+using DotzAvaliacaoTecnica.Domain.Entities;
+using DotzAvaliacaoTecnica.Domain.Interfaces.Services;
+using DotzAvaliacaoTecnica.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +22,16 @@ namespace DotzAvaliacaoTecnica.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserApplicationService _userAppService;
+        private readonly IPointsService _pointsService;
+        private readonly IUserExtractService _userExtractService;
 
-        public UserController(IUserApplicationService userAppService)
+        public UserController(IUserApplicationService userAppService,
+            IPointsService pointsService,
+            IUserExtractService userExtractService)
         {
             _userAppService = userAppService;
+            _pointsService = pointsService;
+            _userExtractService = userExtractService;
         }
 
         
@@ -29,14 +39,21 @@ namespace DotzAvaliacaoTecnica.API.Controllers
         [Route("Authenticate")]
         public IActionResult Authenticate([FromBody] UserViewModel userViewModel)
         {
-            var user = _userAppService.Authenticate(userViewModel.Email, userViewModel.Password);
-
-            if (user == null)
+            var userDTO = _userAppService.Authenticate(userViewModel.Email, userViewModel.Password);
+            
+            if (userDTO == null)
                 return NotFound("Usuario não encontrado");
 
-            return Ok(user);
+            var user = Mapper.Map<Domain.Entities.User>(userDTO);
+
+            var token = TokenService.GenerateToken(user);
+
+            user.Password = string.Empty;
+
+            return Ok(new {user.Name,token });
         }
 
+        //[Authorize]
         [HttpPost]
         [Route("")]
         public IActionResult CreateUser([FromBody] UserDTO userDTO)
@@ -45,6 +62,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(user);
         }
 
+        //[Authorize]
         [HttpPut]
         [Route("")]
         public IActionResult UpdateUser([FromBody] UserDTO userDTO)
@@ -53,6 +71,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(user);
         }
 
+        //[Authorize]
         [HttpDelete]
         [Route("")]
         public IActionResult DeleteUser([FromBody] UserDTO userDTO)
@@ -61,6 +80,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return NoContent();
         }
 
+        //[Authorize]
         [HttpGet]
         [Route("")]
         public IActionResult GetAllUsers()
@@ -70,6 +90,7 @@ namespace DotzAvaliacaoTecnica.API.Controllers
             return Ok(users);
         }
 
+        //[Authorize]
         [HttpGet]
         [Route("{id}:int")]
         public IActionResult GetById(int id)
@@ -81,6 +102,80 @@ namespace DotzAvaliacaoTecnica.API.Controllers
 
             return Ok(user);
         }
+
+        //[Authorize]
+        [HttpPost]
+        [Route("AddUserPoints")]
+        public IActionResult AddUserPoints([FromBody] Points points)
+        {
+            var user = _userAppService.GetById(points.UserId);
+
+
+            if (user == null)
+                return NotFound("Usuario não encontrado");
+
+            var userPoints = _pointsService.GetPointsByUserId(points.UserId);
+
+            if (userPoints == null)
+            {
+                var userExtracts = new UserExtract
+                {
+                    InitialPoints = 0,
+                    PointsBalance = points.TotalPoints,
+                    TransactionDate = DateTime.Now.Date,
+                    TransactionPoints = points.TotalPoints,
+                    TransactionType = Domain.Enums.TransactionTypeEnum.Input,
+                    UserId = points.UserId
+                };
+                _userExtractService.AddUserExtract(userExtracts);
+                _pointsService.AddPoints(points);
+                return Ok(points);
+            }
+            var userExtract = new UserExtract
+            {
+                InitialPoints = userPoints.TotalPoints,
+                PointsBalance = points.TotalPoints + userPoints.TotalPoints,
+                TransactionDate = DateTime.Now.Date,
+                TransactionPoints = points.TotalPoints,
+                TransactionType = Domain.Enums.TransactionTypeEnum.Input,
+                UserId = points.UserId
+            };
+            _userExtractService.AddUserExtract(userExtract);
+            userPoints.TotalPoints += points.TotalPoints;
+            _pointsService.UpdatePoints(userPoints);
+
+            return Ok(userPoints);
+            
+            
+        }
+
+        //[Authorize]
+        [HttpGet]
+        [Route("GetUserPointsByUserId/{id}:int")]
+        public IActionResult GetUserPointsByUserId(int id)
+        {
+            var UserPoints = _pointsService.GetPointsByUserId(id);
+
+            if (UserPoints == null)
+                return NotFound("Usuario não encontrado");
+
+            return Ok(UserPoints);
+        }
+
+        //[Authorize]
+        [HttpGet]
+        [Route("GetUserExtractByUserId/{id}:int")]
+        public IActionResult GetUserExtractByUserId(int id)
+        {
+            var UserExtracts = _userExtractService.GetUserExtractsByUserId(id);
+
+            if (UserExtracts == null)
+                return NotFound("Usuario não encontrado");
+
+            return Ok(UserExtracts);
+        }
+
+
 
     }
 }

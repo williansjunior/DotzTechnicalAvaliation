@@ -1,11 +1,10 @@
 ﻿using DotzAvaliacaoTecnica.Domain.Entities;
-using DotzAvaliacaoTecnica.DomainCore.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DotzAvaliacaoTecnica.Domain.ValueObjects
+namespace DotzAvaliacaoTecnica.Domain.DTO
 {
-    public class Address : BaseEntity
+    public class AddressDTO
     {
+        public int Id { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
         public string Complement { get; set; }
@@ -14,8 +13,6 @@ namespace DotzAvaliacaoTecnica.Domain.ValueObjects
         public string State { get; set; }
         public string Country { get; set; }
         public string District { get; set; }
-
-        [ForeignKey("FK_Address_UserId")]
         public int UserId { get; set; }
     }
 }

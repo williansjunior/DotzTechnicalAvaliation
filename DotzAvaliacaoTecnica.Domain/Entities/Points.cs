@@ -8,6 +8,5 @@ namespace DotzAvaliacaoTecnica.Domain.Entities
         public int TotalPoints { get; set; }
         [ForeignKey("FK_Points_UserId")]
         public int UserId { get; set; }
-        public virtual User User { get; set; }
     }
 }

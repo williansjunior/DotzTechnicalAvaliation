@@ -16,6 +16,8 @@ namespace DotzAvaliacaoTecnica.Infra.Ioc
 		public static void AddApplicationServices(this IServiceCollection services)
 		{
 			services.AddTransient<IUserApplicationService, UserApplicationService>();
+			services.AddTransient<IAddressApplicationService, AddressApplicationService>();
+			services.AddTransient<IProductsApplicationService, ProductsApplicationServices>();
 		}
 
 		
@@ -35,6 +37,10 @@ namespace DotzAvaliacaoTecnica.Infra.Ioc
 		public static void AddDomainServices(this IServiceCollection services)
 		{
 			services.AddTransient<IUserService, UserServices>();
+			services.AddTransient<IAddressService, AddressService>();
+			services.AddTransient<IProductsService, ProductsService>();
+			services.AddTransient<IPointsService, PointsService>();
+			services.AddTransient<IOrdersService, OrdersService>();
 		}
 
 		
@@ -44,6 +50,10 @@ namespace DotzAvaliacaoTecnica.Infra.Ioc
 		public static void AddRepositories(this IServiceCollection services)
 		{
 			services.AddTransient<IUserRepository, UserRepository>();
+			services.AddTransient<IAddressRepository, AddressRepository>();
+			services.AddTransient<IProductsRepository, ProductsRepository>();
+			services.AddTransient<IPointsRepository, PointsRepository>();
+			services.AddTransient<IOrdersRepository, OrdersRepository>();
 		}
 
 		public static void AddUnitOfWork(this IServiceCollection services)
